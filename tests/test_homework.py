@@ -7,20 +7,17 @@ import subprocess
 def test_homework():
     """Test Word Count"""
 
-    if not os.path.exists("homework/src/"):
-        raise Exception("homework/src/ directory does not exist")
-
-    if not os.path.exists("homework/src/_internals/"):
-        raise Exception("homework/src/_internals/ directory does not exist")
-
-    if not os.path.exists("homework/src/_internals/file_operations.py"):
-        raise Exception("homework/src/_internals/file_operations.py does not exist")
-
-    if not os.path.exists("homework/src/_internals/word_count.py"):
-        raise Exception("homework/src/_internals/word_count.py does not exist")
-
-    if not os.path.exists("homework/src/_internals/results.py"):
-        raise Exception("homework/src/_internals/results.py does not exist")
+    for path in [
+        "homework/src",
+        "homework/src/_internals",
+        "homework/src/_internals/count_words.py",
+        "homework/src/_internals/preprocess_lines.py",
+        "homework/src/_internals/read_all_lines.py",
+        "homework/src/_internals/split_into_words.py",
+        "homework/src/_internals/write_word_counts.py",
+    ]:
+        if not os.path.exists(path):
+            raise Exception(f"'{path}' directory does not exist")
 
     try:
         subprocess.run(
@@ -33,7 +30,7 @@ def test_homework():
     if not os.path.exists("data/output/"):
         raise Exception("'data/output/' directory does not exist")
 
-    results_file = "data/output/results.tsv"
+    results_file = "data/output/wordcount.tsv"
     if not os.path.exists(results_file):
         raise Exception(f"'{results_file}' file does not exist")
 
